@@ -20,23 +20,24 @@ $ret = Zip('.');
 </body>
 </html>
 <?php
-function Zip($source, $destination = null)
+
+function Zip($source, $target = null)
 {
 	if (!extension_loaded('zip') || !file_exists($source)) {
 		return false;
 	}
 	
-	if($destination === null){
-		$destination = basename(realpath($source)) . '.' . uniqid() . '.zip';
+	if($target === null){
+		$target = basename(realpath($source)) . '.' . uniqid() . '.zip';
 	}
 
 	$zip = new ZipArchive();
 
-	if (!$zip->open($destination, ZIPARCHIVE::CREATE)) {
+	if (!$zip->open($target, ZIPARCHIVE::CREATE)) {
 		return false;
 	}
 
-	$destination = realpath($destination);
+	$target = realpath($target);
 
 	$source = realpath($source);
 
@@ -51,7 +52,7 @@ function Zip($source, $destination = null)
 
 			$file = realpath($file);
 
-			if($path === $destination || $path === __FILE__){
+			if($path === $target || $path === __FILE__){
 				continue;
 			}
 			if (is_dir($file) === true)
@@ -70,5 +71,5 @@ function Zip($source, $destination = null)
 	}
 
 	$zip->close();
-	return $destination;
+	return $target;
 }
