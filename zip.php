@@ -1,9 +1,7 @@
 <?php
 set_time_limit (0);
 $ret = Zip('.');
-
-?>
-<!doctype html>
+?><!doctype html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -18,8 +16,7 @@ $ret = Zip('.');
 		}
 	?>
 </body>
-</html>
-<?php
+</html><?php
 
 function Zip($source, $target = null)
 {
